@@ -10,7 +10,7 @@ if(usuario){
 
     let nivel = "Bronce";
 
-    if(usuario.puntos > 1000){
+    if(usuario.puntos > 800){
         nivel = "Oro";
     } else if(usuario.puntos > 500){
         nivel = "Plata";
