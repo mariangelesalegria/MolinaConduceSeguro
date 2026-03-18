@@ -1,7 +1,6 @@
 let usuario = JSON.parse(localStorage.getItem("usuarioActual"));
 
 if(usuario){
-
     document.getElementById("nombre").textContent = usuario.nombre;
     document.getElementById("email").textContent = usuario.email;
     document.getElementById("puntos").textContent = usuario.puntos;
@@ -17,5 +16,5 @@ if(usuario){
     document.getElementById("nivel").textContent = nivel;
 
 } else {
-    document.getElementById("perfil").innerHTML = "<p>No hay usuario registrado</p>";
+    document.body.innerHTML = "<h2>No hay usuario guardado</h2>";
 }
