@@ -1,50 +1,17 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Ranking</title>
-<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="cargarRanking()">
 
-<header>
 <h1>Ranking de conductores</h1>
 
-<nav>
-<a href="index.html">Inicio</a>
-<a href="funcionamiento.html">Cómo funciona</a>
-<a href="ranking.html">Ranking</a>
-<a href="premios.html">Premios</a>
-<a href="registro.html">Registro</a>
-<a href="mapa.html">Mapa</a>
-<a href="perfil.html">Perfil</a>
-</nav>
-</header>
+<table id="tablaRanking" border="1"></table>
 
-<table border="1" align="center">
-<tr>
-<th>Usuario</th>
-<th>Puntos</th>
-<th>Nivel</th>
-</tr>
-<tr>
-<td>Ana</td>
-<td>Plata</td>
-<td>Oro</td>
-</tr>
-<tr>
-<td>Carlos</td>
-<td>700</td>
-<td>Plata</td>
-</tr>
-<tr>
-<td>Lucía</td>
-<td>450</td>
-<td>Bronce</td>
-</tr>
-</table>
+<script type="module" src="firebase.js"></script>
 
 </body>
 </html>
