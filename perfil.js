@@ -1,0 +1,21 @@
+let usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+
+if(usuario){
+
+    document.getElementById("nombre").textContent = usuario.nombre;
+    document.getElementById("email").textContent = usuario.email;
+    document.getElementById("puntos").textContent = usuario.puntos;
+
+    let nivel = "Bronce";
+
+    if(usuario.puntos > 800){
+        nivel = "Oro";
+    } else if(usuario.puntos > 500){
+        nivel = "Plata";
+    }
+
+    document.getElementById("nivel").textContent = nivel;
+
+} else {
+    document.getElementById("perfil").innerHTML = "<p>No hay usuario registrado</p>";
+}
