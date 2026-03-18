@@ -29,9 +29,10 @@ gap:10px;
 }
 
 .logo{
-width:50px;
-height:50px;
-object-fit:contain;
+width:40px;
+height:auto;
+vertical-align:middle
+margin-right:10px;
 }
 
 /* NAVEGACIÓN */
