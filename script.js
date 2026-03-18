@@ -24,3 +24,4 @@ function registrarUsuario(e){
 
     window.location.href = "perfil.html"; // ahora va al perfil
 }
+
