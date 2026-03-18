@@ -1,6 +1,9 @@
-let usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+let usuario = localStorage.getItem("usuarioActual");
 
 if(usuario){
+
+    usuario = JSON.parse(usuario);
+
     document.getElementById("nombre").textContent = usuario.nombre;
     document.getElementById("email").textContent = usuario.email;
     document.getElementById("puntos").textContent = usuario.puntos;
