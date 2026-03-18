@@ -12,18 +12,15 @@ background:#f2f2f2;
 color:#333;
 }
 
-/* HEADER */
 .header{
-background:#1d3557;
-color:white;
-padding:15px 30px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-flex-wrap:wrap;
+background:#c1121f;
+color:white;
+padding:15px 30px;
 }
 
-/* LOGO + TITULO */
 .logo-titulo{
 display:flex;
 align-items:center;
