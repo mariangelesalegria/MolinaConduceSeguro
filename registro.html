@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 <meta charset="UTF-8">
@@ -13,19 +13,22 @@
 <h1>Registro de usuario</h1>
 </header>
 
-<form>
+<form onsubmit="registrarUsuario(event)">
+
 <label>Nombre</label>
-<input type="text" required>
+<input type="text" id="nombre" required>
 
 <label>Email</label>
-<input type="email" required>
+<input type="email" id="email" required>
 
 <label>Contraseña</label>
 <input type="password" required>
 
 <button type="submit">Registrarse</button>
-  <form onsubmit="registrarUsuario(event)">
+
 </form>
+
+<script src="script.js"></script>
 
 </body>
 </html>
