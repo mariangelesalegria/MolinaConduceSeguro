@@ -6,26 +6,16 @@ function registrarUsuario(e){
 
     let puntos = Math.floor(Math.random() * 1000);
 
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    let nuevoUsuario = {
+    let usuario = {
         nombre: nombre,
         email: email,
         puntos: puntos
     };
 
-    usuarios.push(nuevoUsuario);
+    // 🔥 GUARDAR USUARIO
+    localStorage.setItem("usuarioActual", JSON.stringify(usuario));
 
-    // GUARDAR LISTA
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-    // GUARDAR USUARIO ACTUAL
-    localStorage.setItem("usuarioActual", JSON.stringify(nuevoUsuario));
-
-    console.log("Usuarios guardados:", usuarios); // 👈 para comprobar
-
-    alert("Registro guardado correctamente");
+    alert("Usuario registrado correctamente");
 
     window.location.href = "perfil.html";
 }
-
