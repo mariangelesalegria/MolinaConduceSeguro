@@ -16,9 +16,10 @@ color:#333;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:#c1121f;
+background:#1d3557;
 color:white;
 padding:15px 30px;
+flex-wrap:wrap;
 }
 
 .logo-titulo{
