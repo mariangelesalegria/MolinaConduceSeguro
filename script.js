@@ -1,8 +1,9 @@
 function registrarUsuario(e){
     e.preventDefault();
 
-    let nombre = document.querySelector("input[type='text']").value;
-    let email = document.querySelector("input[type='email']").value;
+    let nombre = document.getElementById("nombre").value;
+    let email = document.getElementById("email").value;
+
     let puntos = Math.floor(Math.random() * 1000);
 
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -15,13 +16,16 @@ function registrarUsuario(e){
 
     usuarios.push(nuevoUsuario);
 
+    // GUARDAR LISTA
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    // GUARDAMOS EL USUARIO ACTUAL
+    // GUARDAR USUARIO ACTUAL
     localStorage.setItem("usuarioActual", JSON.stringify(nuevoUsuario));
 
-    alert("Usuario registrado correctamente");
+    console.log("Usuarios guardados:", usuarios); // 👈 para comprobar
 
-    window.location.href = "perfil.html"; // ahora va al perfil
+    alert("Registro guardado correctamente");
+
+    window.location.href = "perfil.html";
 }
 
