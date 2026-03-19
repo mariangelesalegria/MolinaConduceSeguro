@@ -2,22 +2,63 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Mapa de Seguridad Vial - Molina de Segura</title>
+<title>Mapa</title>
+
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+/* SOLUCIÓN CLAVE */
+#map {
+height: 500px;
+width: 90%;
+margin: 20px auto;
+}
+</style>
+
 </head>
+
 <body>
+
 <header>
-<h1>Mapa de Seguridad Vial de Molina de Segura</h1>
+<h1>Mapa de Seguridad Vial</h1>
+
+<nav>
+<a href="index.html">Inicio</a>
+<a href="funcionamiento.html">Cómo funciona</a>
+<a href="ranking.html">Ranking</a>
+<a href="premios.html">Premios</a>
+<a href="mapa.html">Mapa</a>
+<a href="registro.html">Registro</a>
+<a href="perfil.html">Perfil</a>
+</nav>
 </header>
 
-<section>
-<p>Este mapa muestra pasos de peatones, semáforos, radares, rotondas peligrosas y zonas de accidentes frecuentes.</p>
-</section>
+<h2 style="text-align:center;">Mapa de Molina de Segura</h2>
 
-<div id="mapa"></div>
+<div id="map"></div>
 
-<script src="mapa.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+var map = L.map('map').setView([38.054, -1.209], 14);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// PRUEBA: marcador simple
+L.marker([38.054, -1.209]).addTo(map)
+.bindPopup("📍 Molina de Segura")
+.openPopup();
+
+});
+</script>
+
 </body>
 </html>
