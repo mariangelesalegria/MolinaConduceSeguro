@@ -1,71 +1,28 @@
-/* RESET BÁSICO */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-/* CUERPO */
 body{
 font-family: Arial, sans-serif;
+margin:0;
 background:#f2f2f2;
-color:#333;
 }
 
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
+header{
 background:#1d3557;
 color:white;
-padding:15px 30px;
-flex-wrap:wrap;
+padding:20px;
+text-align:center;
 }
 
-.logo-titulo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.logo{
-width:40px;
-height:auto;
-vertical-align:middle
-margin-right:10px;
-}
-
-/* NAVEGACIÓN */
 nav a{
 color:white;
 margin:10px;
 text-decoration:none;
 font-weight:bold;
-transition:0.3s;
 }
 
-nav a:hover{
-color:#e63946;
-}
-
-/* HERO (INICIO) */
 .hero{
 text-align:center;
-padding:80px 20px;
-background:white;
+padding:80px;
 }
 
-.hero h2{
-font-size:2.5rem;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:1.2rem;
-margin-bottom:30px;
-}
-
-/* BOTONES */
 button{
 background:#e63946;
 color:white;
@@ -74,121 +31,8 @@ border:none;
 border-radius:6px;
 font-size:16px;
 cursor:pointer;
-transition:0.3s;
 }
 
 button:hover{
 background:#c1121f;
-}
-
-/* SECCIONES GENERALES */
-section{
-padding:40px 20px;
-max-width:1000px;
-margin:auto;
-}
-
-/* TITULOS */
-h1, h2{
-text-align:center;
-margin-bottom:20px;
-}
-
-/* TABLAS (RANKING) */
-table{
-width:80%;
-margin:30px auto;
-border-collapse:collapse;
-background:white;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-
-th, td{
-padding:15px;
-text-align:center;
-border-bottom:1px solid #ddd;
-}
-
-th{
-background:#1d3557;
-color:white;
-}
-
-tr:hover{
-background:#f1f1f1;
-}
-
-/* FORMULARIO */
-form{
-background:white;
-padding:30px;
-max-width:400px;
-margin:40px auto;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-display:flex;
-flex-direction:column;
-}
-
-form label{
-margin-top:10px;
-margin-bottom:5px;
-font-weight:bold;
-}
-
-form input{
-padding:10px;
-border:1px solid #ccc;
-border-radius:5px;
-}
-
-/* PERFIL */
-.perfil{
-background:white;
-padding:30px;
-max-width:500px;
-margin:40px auto;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-text-align:center;
-}
-
-/* TARJETAS (PREMIOS) */
-.tarjeta{
-background:white;
-padding:20px;
-margin:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-text-align:center;
-}
-
-/* MAPA */
-#map{
-width:90%;
-height:500px;
-margin:30px auto;
-border-radius:10px;
-}
-
-/* RESPONSIVE (MÓVIL) */
-@media(max-width:768px){
-
-.header{
-flex-direction:column;
-text-align:center;
-}
-
-nav{
-margin-top:10px;
-}
-
-.hero h2{
-font-size:2rem;
-}
-
-table{
-width:95%;
-}
-
 }
