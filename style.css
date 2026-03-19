@@ -36,3 +36,9 @@ cursor:pointer;
 button:hover{
 background:#c1121f;
 }
+#map{
+height:500px;
+width:90%;
+margin:30px auto;
+border-radius:10px;
+}
