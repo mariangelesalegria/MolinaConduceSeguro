@@ -1,23 +1,20 @@
 let usuario = localStorage.getItem("usuarioActual");
 
 if(usuario){
-
     usuario = JSON.parse(usuario);
 
     document.getElementById("nombre").textContent = usuario.nombre;
     document.getElementById("email").textContent = usuario.email;
     document.getElementById("puntos").textContent = usuario.puntos;
 
-    let nivel = "Bronce";
+    document.getElementById("fotoPerfil").src = usuario.foto || "default.png";
 
-    if(usuario.puntos > 800){
-        nivel = "Oro";
-    } else if(usuario.puntos > 500){
-        nivel = "Plata";
-    }
+    let nivel = "Bronce";
+    if(usuario.puntos>1000) nivel="Oro";
+    else if(usuario.puntos>500) nivel="Plata";
 
     document.getElementById("nivel").textContent = nivel;
 
 } else {
-    document.body.innerHTML = "<h2>No hay usuario guardado</h2>";
+    document.body.innerHTML="<h2>No hay usuario registrado</h2>";
 }
