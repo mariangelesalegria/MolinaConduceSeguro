@@ -5,11 +5,13 @@
 <title>Registro</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <h1>Registro de usuario</h1>
 
 <form onsubmit="registrarUsuario(event)">
+
 <label>Nombre</label><br>
 <input type="text" id="nombre" required><br><br>
 
@@ -17,12 +19,14 @@
 <input type="email" id="email" required><br><br>
 
 <label>Contraseña</label><br>
-<input type="password" id="password" required><br><br>
+<input type="password" required><br><br>
 
 <button type="submit">Registrarse</button>
+
 </form>
 
-<script type="module" src="firebase.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
+
