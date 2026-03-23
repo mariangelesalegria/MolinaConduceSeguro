@@ -1,6 +1,9 @@
-// IMPORTAR FIREBASE
+// 🔥 IMPORTAR FIREBASE
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// 🔐 CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyXXXX",
   authDomain: "molina-conduce-seguro.firebaseapp.com",
@@ -9,68 +12,120 @@ const firebaseConfig = {
   messagingSenderId: "123456",
   appId: "1:123:web:abc"
 };
-// INICIAR
+
+// 🚀 INICIAR
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-// -------------------
-// REGISTRO
-// -------------------
+// =======================
+// 🧍 REGISTRO USUARIO
+// =======================
 window.registrarUsuario = async function(e){
     e.preventDefault();
 
-    let nombre = document.getElementById("nombre").value;
-    let email = document.getElementById("email").value;
-    let puntos = Math.floor(Math.random() * 1000);
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    await addDoc(collection(db, "usuarios"), {
-        nombre: nombre,
-        email: email,
-        puntos: puntos
-    });
+    const puntos = Math.floor(Math.random()*1500);
 
-    alert("Usuario guardado");
+    try {
+        // Crear usuario en Firebase Auth
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-    window.location.href = "ranking.html";
+        const usuario = {
+            uid: cred.user.uid,
+            nombre,
+            email,
+            puntos,
+            fecha: new Date(),
+            foto: "default.png" // foto por defecto
+        };
+
+        // Guardar en Firestore
+        await addDoc(collection(db,"usuarios"), usuario);
+
+        // Guardar en localStorage (para perfil)
+        localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+
+        alert("Registro correcto!");
+        window.location.href = "perfil.html";
+
+    } catch(error) {
+        alert(error.message);
+    }
 };
 
-// -------------------
-// RANKING
-// -------------------
-window.cargarRanking = async function(){
+// =======================
+// 🔑 LOGIN
+// =======================
+window.loginUsuario = async function(e){
+    e.preventDefault();
 
-    const querySnapshot = await getDocs(collection(db, "usuarios"));
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    let usuarios = [];
+    try {
+        const cred = await signInWithEmailAndPassword(auth,email,password);
 
-    querySnapshot.forEach((doc) => {
-        usuarios.push(doc.data());
-    });
+        // Buscar datos en Firestore
+        const snapshot = await getDocs(collection(db,"usuarios"));
+        let usuario;
+        snapshot.forEach(doc=>{
+            if(doc.data().uid===cred.user.uid) usuario = doc.data();
+        });
 
-    usuarios.sort((a,b) => b.puntos - a.puntos);
+        localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+        window.location.href="perfil.html";
 
-    let tabla = document.getElementById("tablaRanking");
+    } catch(error) {
+        alert(error.message);
+    }
+};
 
-    tabla.innerHTML = `
-    <tr>
-        <th>Usuario</th>
-        <th>Puntos</th>
-        <th>Nivel</th>
-    </tr>
-    `;
+// =======================
+// 🏆 RANKING TOP 10 TIEMPO REAL
+// =======================
+window.cargarRanking = function(){
 
-    usuarios.forEach(u => {
+    const tabla = document.getElementById("tablaRanking");
 
-        let nivel = "Bronce";
-        if(u.puntos > 1000) nivel = "Oro";
-        else if(u.puntos > 500) nivel = "Plata";
+    onSnapshot(collection(db, "usuarios"), (snapshot) => {
 
-        tabla.innerHTML += `
+        let usuarios = [];
+
+        snapshot.forEach((doc) => {
+            usuarios.push(doc.data());
+        });
+
+        // Ordenar por puntos
+        usuarios.sort((a,b)=>b.puntos-a.puntos);
+        usuarios = usuarios.slice(0,10); // Top 10
+
+        tabla.innerHTML = `
         <tr>
-            <td>${u.nombre}</td>
-            <td>${u.puntos}</td>
-            <td>${nivel}</td>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Puntos</th>
+            <th>Nivel</th>
         </tr>
         `;
+
+        usuarios.forEach((u,index)=>{
+            let nivel="Bronce", medalla="🥉";
+            if(u.puntos>1000){nivel="Oro"; medalla="🥇";}
+            else if(u.puntos>500){nivel="Plata"; medalla="🥈";}
+
+            tabla.innerHTML += `
+            <tr>
+                <td>${index+1} ${medalla}</td>
+                <td>${u.nombre}</td>
+                <td>${u.puntos}</td>
+                <td>${nivel}</td>
+            </tr>
+            `;
+        });
+
     });
 };
